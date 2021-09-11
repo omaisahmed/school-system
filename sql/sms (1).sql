@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2021 at 06:42 PM
+-- Generation Time: Sep 09, 2021 at 06:03 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `sms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classes`
+--
+
+CREATE TABLE `classes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `classes`
+--
+
+INSERT INTO `classes` (`id`, `class`, `created_at`, `updated_at`) VALUES
+(1, 'One', '2021-09-07 10:46:21', '2021-09-07 10:46:21'),
+(3, 'Two', '2021-09-07 11:07:30', '2021-09-07 11:07:30'),
+(4, 'Three', '2021-09-07 11:07:44', '2021-09-07 11:07:44'),
+(5, 'Four', '2021-09-07 11:07:57', '2021-09-07 11:07:57'),
+(6, 'Five', '2021-09-07 11:08:11', '2021-09-07 11:08:11'),
+(7, 'Six', '2021-09-07 23:39:26', '2021-09-07 23:39:26'),
+(8, 'Seven', '2021-09-08 22:35:52', '2021-09-08 22:35:52');
 
 -- --------------------------------------------------------
 
@@ -61,7 +87,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (6, '2021_08_22_115018_create_sessions_table', 1),
 (7, '2021_09_04_075404_create_students_table', 1),
-(8, '2021_09_06_103258_create_teachers_table', 2);
+(8, '2021_09_06_103258_create_teachers_table', 2),
+(9, '2021_09_07_153830_create_classes_table', 3),
+(10, '2021_09_08_041326_create_subjects_table', 4),
+(11, '2021_09_09_032851_add_password_to_teachers_table', 5),
+(12, '2021_09_09_033116_add_confirm_password_to_teachers_table', 6);
 
 -- --------------------------------------------------------
 
@@ -113,7 +143,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2nhMonbzd8nvjlrFoHJmEzUfkhvBBiO7lZQv1smJ', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUVgwbURIUVBoaVpnNVNuY29DcklERHhVTlNsTWMyeTVYYlk0UXRvWSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9zdHVkZW50cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkRndsRTN0NmZjSWV5N0F5T2E5aUlBZTYudXVVNmZaY1FqNXNVcjFrdmguTmZaUkRwN2YzM20iO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJEZ3bEUzdDZmY0lleTdBeU9hOWlJQWU2LnV1VTZmWmNRajVzVXIxa3ZoLk5mWlJEcDdmMzNtIjt9', 1630927220);
+('ddTjNtXjjLKn4XYm8Chm0jDTuqq6yGKKptdx79Iw', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoidTlUMWRHMjc0V0U1S0E1a2F0aUp2WWhHVE5aZ0FiVWdKbXI3Sll6USI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2Vycy9jcmVhdGUiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxMTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDA4RVpWZ25qclRHUW0yL1BVcGlESU9nYVV1NU9TVmNteWs4bk56QThSLnI5YXl6dks3MUF1IjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQwOEVaVmduanJUR1FtMi9QVXBpRElPZ2FVdTVPU1ZjbXlrOG5OekE4Ui5yOWF5enZLNzFBdSI7fQ==', 1631173219);
 
 -- --------------------------------------------------------
 
@@ -135,7 +165,31 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `email`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'omais', 'decentomais90@gmail.com', 'Student', '2021-09-06 06:20:20', '2021-09-06 06:20:20');
+(1, 'omais ahmed', 'decentomais90@gmail.com', 'Teacher', '2021-09-06 06:20:20', '2021-09-06 23:10:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `class`, `subject`, `created_at`, `updated_at`) VALUES
+(1, 'One', 'English', '2021-09-07 23:18:32', '2021-09-07 23:18:32'),
+(2, 'Two', 'Physics', '2021-09-07 23:18:52', '2021-09-07 23:18:52'),
+(4, 'Three', 'Chemistry', '2021-09-07 23:31:49', '2021-09-08 00:36:50'),
+(5, 'Five', 'OOP', '2021-09-08 22:34:19', '2021-09-08 22:34:19');
 
 -- --------------------------------------------------------
 
@@ -147,6 +201,8 @@ CREATE TABLE `teachers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `confirm_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dob` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -159,9 +215,9 @@ CREATE TABLE `teachers` (
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`id`, `name`, `email`, `phone`, `gender`, `dob`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'omais', 'omais@gmail.com', '1233421322', 'Male', '2021-09-16', 'MC-1017 Green Town Shah Faisal Colony Karachi', '2021-09-06 05:54:48', '2021-09-06 05:54:48'),
-(2, 'Tahir', 'tahir@gmail.com', '1233421322', 'Male', '2021-09-11', 'Karachi', '2021-09-06 06:05:57', '2021-09-06 06:05:57');
+INSERT INTO `teachers` (`id`, `name`, `email`, `password`, `confirm_password`, `phone`, `gender`, `dob`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'omais', 'omais@gmail.com', '123456789', '123456789', '1233421322', 'Male', '2021-09-16', 'MC-1017 Green Town Shah Faisal Colony Karachi', '2021-09-06 05:54:48', '2021-09-06 05:54:48'),
+(2, 'Tahir Aslam', 'tahir@gmail.com', '123456789', '123456789', '1233421322', 'Male', '2021-09-11', 'Islamabad', '2021-09-06 06:05:57', '2021-09-08 22:33:38');
 
 -- --------------------------------------------------------
 
@@ -173,6 +229,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -188,12 +245,18 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'omais', 'omais@amzonestep.com', NULL, '$2y$10$FwlE3t6fcIey7AyOa9iIAe6.uuU6fZcQj5sUr1kvh.NfZRDp7f33m', NULL, NULL, NULL, NULL, NULL, '2021-09-06 05:53:37', '2021-09-06 05:53:37');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
+(11, 'faizan', 'faizan@gmail.com', 'student', NULL, '$2y$10$08EZVgnjrTGQm2/PUpiDIOgaUu5OSVcmyk8nNzA8R.r9ayzvK71Au', NULL, NULL, NULL, NULL, NULL, '2021-09-09 02:20:39', '2021-09-09 02:20:39');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -237,6 +300,12 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `teachers`
 --
 ALTER TABLE `teachers`
@@ -254,6 +323,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `classes`
+--
+ALTER TABLE `classes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -263,7 +338,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -278,6 +353,12 @@ ALTER TABLE `students`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
@@ -287,7 +368,7 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

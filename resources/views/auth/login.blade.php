@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <!-- <x-jet-authentication-card-logo /> -->
+            <h1 style="font-size: 33px;font-weight: 700;">School Management System</h1>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -27,7 +28,12 @@
 
             <div class="mt-4">
                 <x-jet-label for="role" value="{{ __('Role') }}" />
-                <x-jet-input id="role" class="block mt-1 w-full" type="text" name="role" required />
+                <select name="role" class="select2 form-control mb-3 custom-select select2-hidden-accessible border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" tabindex="-1" aria-hidden="true">             
+                                                <option name="admin">Admin</option>
+                                                <option name="student">Student</option>  
+                                                <option name="teacher">Teacher</option>                   
+                </select>
+                <!-- <x-jet-input id="role" class="block mt-1 w-full" type="text" name="role" required /> -->
             </div>
 
             <div class="block mt-4">
@@ -38,11 +44,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
+                <!-- @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
-                @endif
+                @endif -->
 
                 <x-jet-button class="ml-4">
                     {{ __('Log in') }}

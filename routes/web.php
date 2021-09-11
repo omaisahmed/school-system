@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\SubjectsController;
+use Illuminate\Http\RedirectResponse;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Route::get('/login', function () {
+//     return redirect('/dashboard');
+// });
+
 Auth::routes();
 
 // Route::get('/students/index', [App\Http\Controllers\StudentsController::class, 'index'])->name('index');
@@ -33,3 +38,8 @@ Route::resource('subjects',SubjectsController::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// For Roles
+// Route::get('/users', function () {
+//     return view('users.index');
+// })->name('users');

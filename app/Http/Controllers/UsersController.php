@@ -53,7 +53,7 @@ class UsersController extends Controller
         ->insert([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             // 'password' => Hash::make($user['password']),
             // 'password' => md5($request->input('password')),
             'role' => $request->input('role'),
@@ -118,7 +118,7 @@ class UsersController extends Controller
         ->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'role' => $request->input('role'),
             
         ]);
