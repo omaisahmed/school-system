@@ -39,9 +39,10 @@ class TeachersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Teachers $teacher)
     {
         $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name'=> 'required',
             'email'=> 'required',
             // 'password'  =>  'required|min:8|confirmed',
@@ -52,6 +53,23 @@ class TeachersController extends Controller
             'address'=> 'required',
 
         ]);
+
+        Teachers::where('id', $teacher->id)
+        ->insert([
+            'image' => $request->file('image')->store('images/teachers'),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'confirm_password' => $request->input('confirm_password'),
+            'phone' => $request->input('phone'),
+            'gender' => $request->input('gender'),
+            'dob' => $request->input('dob'),
+            'address' => $request->input('address'),
+            
+        ]);
+    
+        // $imageName = time().'.'.$request->image->extension();  
+        // $request->image->move(public_path('images/teachers'), $imageName);
 
         // Teachers::where('id', $teacher->id)
         // ->insert([
@@ -66,7 +84,7 @@ class TeachersController extends Controller
             
         // ]);
  
-        Teachers::create($request->all());
+        // Teachers::create($request->all());
     
     //     $password = $request -> password; // password is form field
     //    $hashed = Hash::make($password);

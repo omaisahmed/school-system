@@ -47,7 +47,7 @@
         </ul>
     </div>
 @endif
-                <form action="{{ route('teachers.store') }}" method="POST">
+                <form action="{{ route('teachers.store') }}" method="POST" enctype="multipart/form-data">
                    @csrf
                         <div class="form-group mb-0">
                             <label class="mb-2 pb-1">Name</label>
@@ -107,6 +107,11 @@
                         <div class="form-group mb-0">
                             <label class="my-2 py-1">Address</label>
                             <textarea name="address" class="form-control mb-3" rows="4" required placeholder="Address"></textarea>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label class="my-2 py-1">Upload Image</label>
+                            <input type="file" name="image" class="form-control" required />
                         </div>
                        
                         <div class="form-group mb-0">

@@ -50,6 +50,7 @@
                                                 <thead>
                                                     <tr>
                                                     <th class="Bold">No</th>
+                                                    <th class="Bold">Image</th>
                                                     <th class="Bold">Name</th>
                                                     <th class="Bold">Email</th>
                                                     <th class="Bold">Password</th>
@@ -64,7 +65,9 @@
                                                 <tbody>
                                                 @foreach ($teachers as $teacher)
                                                     <tr>
+                                                      
                                                         <td>{{ ++$i }}</td>
+                                                        <td><img src="{{ URL($teacher->image) }}"></td>
                                                         <td>{{ $teacher->name }}</td>
                                                         <td>{{ $teacher->email}}</td>
                                                         <td>{{ $teacher->password}}</td>
