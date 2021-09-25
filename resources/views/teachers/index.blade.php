@@ -63,31 +63,32 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($teachers as $teacher)
-                                                    <tr>
+                                                        @foreach ($teachers as $teacher)
                                                       
-                                                        <td>{{ ++$i }}</td>
-                                                        <td><img src="{{ URL($teacher->image) }}"></td>
-                                                        <td>{{ $teacher->name }}</td>
-                                                        <td>{{ $teacher->email}}</td>
-                                                        <td>{{ $teacher->password}}</td>
-                                                        <td>{{ $teacher->confirm_password }}</td>
-                                                        <td>{{ $teacher->phone }}</td>
-                                                        <td>{{ $teacher->gender }}</td>
-                                                        <td>{{ $teacher->dob }}</td>
-                                                        <td>{{ $teacher->address }}</td>
-                                                        <td><form action="{{ route('teachers.destroy',$teacher->id) }}" method="POST">
-                                                          <a class="btn btn-primary" href="{{ route('teachers.edit',$teacher->id) }}">Edit</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                            </tr>
-                                            @endforeach
+                                                            <tr>
+                                                            
+                                                                <td>{{ ++$i }}</td>
+                                                                <th><img src="/images/teachers/{{ $teacher->image }}" width="100" class="img-responsive" /></th>
+                                                                <td>{{ $teacher->name }}</td>
+                                                                <td>{{ $teacher->email}}</td>
+                                                                <td>{{ $teacher->password}}</td>
+                                                                <td>{{ $teacher->confirm_password }}</td>
+                                                                <td>{{ $teacher->phone }}</td>
+                                                                <td>{{ $teacher->gender }}</td>
+                                                                <td>{{ $teacher->dob }}</td>
+                                                                <td>{{ $teacher->address }}</td>
+                                                                <td><form action="{{ route('teachers.destroy',$teacher->id) }}" method="POST">
+                                                                <a class="btn btn-primary" href="{{ route('teachers.edit',$teacher->id) }}">Edit</a>
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                                        </form>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                    
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
 
                                             {{ $teachers->links() }}
                                             

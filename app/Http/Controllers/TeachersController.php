@@ -54,9 +54,18 @@ class TeachersController extends Controller
 
         ]);
 
+        $file = $request->file('image');    
+      
+      $filename = time(). '.' . $file->getClientOriginalExtension();
+
+      $file->storeAs('images/teachers' , $filename);
+      
+      $path = $file->storeAs('' , $filename);
+
+
         Teachers::where('id', $teacher->id)
         ->insert([
-            'image' => $request->file('image')->store('images/teachers'),
+            'image' => $path,
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => $request->input('password'),
