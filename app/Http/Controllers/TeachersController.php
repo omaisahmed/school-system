@@ -54,13 +54,10 @@ class TeachersController extends Controller
 
         ]);
 
-        $file = $request->file('image');    
-      
-      $filename = time(). '.' . $file->getClientOriginalExtension();
-
-      $file->storeAs('images/teachers' , $filename);
-      
-      $path = $file->storeAs('' , $filename);
+        $file = $request->file('image');     
+        $filename = time(). '.' . $file->getClientOriginalExtension();
+        $file->storeAs('images/teachers' , $filename);
+        $path = $file->storeAs('' , $filename);
 
 
         Teachers::where('id', $teacher->id)
@@ -140,6 +137,7 @@ class TeachersController extends Controller
     public function update(Request $request, Teachers $teacher)
     {
         $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name'=> 'required',
             'email'=> 'required',
             // 'password'  =>  'required|min:8|confirmed',
@@ -151,8 +149,14 @@ class TeachersController extends Controller
 
         ]);
 
+        $file = $request->file('image');     
+        $filename = time(). '.' . $file->getClientOriginalExtension();
+        $file->storeAs('images/teachers' , $filename);
+        $path = $file->storeAs('' , $filename);
+
         Teachers::where('id', $teacher->id)
         ->update([
+            'image' => $path,
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => $request->input('password'),

@@ -68,7 +68,7 @@
                                                             <tr>
                                                             
                                                                 <td>{{ ++$i }}</td>
-                                                                <th><img src="/images/teachers/{{ $teacher->image }}" width="100" class="img-responsive" /></th>
+                                                                <th><img src="/images/teachers/{{ $teacher->image }}" width="70" class="img-responsive rounded-circle" /></th>
                                                                 <td>{{ $teacher->name }}</td>
                                                                 <td>{{ $teacher->email}}</td>
                                                                 <td>{{ $teacher->password}}</td>

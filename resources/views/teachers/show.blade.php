@@ -43,6 +43,7 @@
                                                 <thead>
                                                 <tr>
                                                     <th class="Bold">No</th>
+                                                    <th class="Bold">Image</th>
                                                     <th class="Bold">Name</th>
                                                     <th class="Bold">Email</th>
                                                     <th class="Bold">Password</th>
@@ -58,6 +59,7 @@
                                                
                                                 <tr>
                                                         <td>{{ $teacher->id }}</td>
+                                                        <th><img src="/images/teachers/{{ $teacher->image }}" width="100" class="img-responsive" /></th>
                                                         <td>{{ $teacher->name }}</td>
                                                         <td>{{ $teacher->email}}</td>
                                                         <td>{{ $teacher->password}}</td>
